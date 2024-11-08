@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gifexpertapp/pages/categoria.dart';
 
 // función main llama al 1er widget que se va ejecutar
 void main() => runApp(app());
@@ -29,97 +30,25 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     // retornar la estructura del appMóvil
-    return Scaffold(body: cuerpo());
-  }
-}
-
-// Crear función WIDGET Cuerpo
-Widget cuerpo() {
-  return Container(
-      decoration: BoxDecoration(
-          image: DecorationImage(
-              image: NetworkImage(
-                  "https://img.freepik.com/fotos-premium/fondos-pantalla-ciudad-noche_771703-14587.jpg"),
-              fit: BoxFit.cover)),
-      child: Center(
+    return Scaffold(
+        appBar: AppBar(
+          title: Text('Navegación'),
+          backgroundColor: Colors.blue,
+        ),
+        body: Center(
           child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          nombre(),
-          SizedBox(
-            height: 20.0,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text('home'),
+              ElevatedButton(
+                  onPressed: () {
+                    // llamar a mi widget
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => categories()));
+                  },
+                  child: Text('Ir a categories'))
+            ],
           ),
-          usuario(),
-          SizedBox(
-            height: 20.0,
-          ),
-          passWord(),
-          SizedBox(
-            height: 20.0,
-          ),
-          button()
-        ],
-      )));
-}
-
-// crear una función widget nombre
-Widget nombre() {
-  return Text('INICIAR SESIÓN',
-      style: TextStyle(
-          color: Colors.white, fontSize: 32.00, fontWeight: FontWeight.w900));
-}
-
-// campo usuaro
-Widget usuario() {
-  return Padding(
-    padding: EdgeInsets.only(left: 50.0, right: 50.0),
-    child: TextField(
-      style: TextStyle(fontSize: 24.00, fontWeight: FontWeight.bold),
-      decoration: InputDecoration(
-          hintText: 'user',
-          fillColor: Colors.white,
-          filled: true,
-          contentPadding: EdgeInsets.only(left: 10.0, top: 10.0, bottom: 10.0),
-          hintStyle: TextStyle(fontSize: 24.00, fontWeight: FontWeight.bold)),
-    ),
-  );
-}
-
-// campo de la contraseña
-Widget passWord() {
-  return Padding(
-    padding: EdgeInsets.only(left: 50.0, right: 50.0),
-    child: TextField(
-      obscureText: true,
-      style: TextStyle(fontSize: 24.00, fontWeight: FontWeight.bold),
-      decoration: InputDecoration(
-          hintText: 'Password',
-          fillColor: Colors.white,
-          filled: true,
-          contentPadding: EdgeInsets.only(left: 10.0, top: 10.0, bottom: 10.0),
-          hintStyle: TextStyle(fontSize: 24.00, fontWeight: FontWeight.bold)),
-    ),
-  );
-}
-
-// booton
-Widget button() {
-  return ElevatedButton(
-    onPressed: () {},
-    style: ElevatedButton.styleFrom(
-      backgroundColor: Colors.blue, // Fondo azul
-      padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12.0),
-      ),
-    ),
-    child: Text(
-      'Login',
-      style: TextStyle(
-        fontSize: 18.0,
-        fontWeight: FontWeight.bold,
-        color: Colors.white,
-      ),
-    ),
-  );
+        ));
+  }
 }
