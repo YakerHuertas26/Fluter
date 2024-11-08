@@ -11,7 +11,7 @@ class app extends StatelessWidget {
   Widget build(BuildContext context) {
     // retorno materilAPP que es un patron de diseño
     return MaterialApp(
-      title: 'My App',
+      title: "My App",
       home: Home(), // el widget principal
     );
   }
@@ -29,46 +29,97 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     // retornar la estructura del appMóvil
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('MY NEW APP'),
-      ),
-      // body: Column(
-      //   // alinear del contenido en su eje principal
-      //   mainAxisAlignment: MainAxisAlignment.center,
-      //   // alinea en su eje secundario
-      //   crossAxisAlignment: CrossAxisAlignment.sat,
-      //   // definir el tamaño maximo y mínimo
-      //   mainAxisSize: MainAxisSize.max,
-
-      //   children: <Widget>[
-      //     Container(
-      //         width: MediaQuery.of(context).size.width,
-      //         child: Text(
-      //           'text one 01',
-      //           textAlign: TextAlign.center,
-      //         )),
-      //     Text('texto two 02'),
-      //     Text('texto 03')
-      //   ],
-      // ));
-      body: Center(
-        child: ElevatedButton(
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Icon(Icons.access_alarms),
-              Text('now'),
-              SizedBox(
-                width: 8,
-              )
-            ],
-          ),
-          onPressed: () {
-            print('hola');
-          },
-        ),
-      ),
-    );
+    return Scaffold(body: cuerpo());
   }
+}
+
+// Crear función WIDGET Cuerpo
+Widget cuerpo() {
+  return Container(
+      decoration: BoxDecoration(
+          image: DecorationImage(
+              image: NetworkImage(
+                  "https://img.freepik.com/fotos-premium/fondos-pantalla-ciudad-noche_771703-14587.jpg"),
+              fit: BoxFit.cover)),
+      child: Center(
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          nombre(),
+          SizedBox(
+            height: 20.0,
+          ),
+          usuario(),
+          SizedBox(
+            height: 20.0,
+          ),
+          passWord(),
+          SizedBox(
+            height: 20.0,
+          ),
+          button()
+        ],
+      )));
+}
+
+// crear una función widget nombre
+Widget nombre() {
+  return Text('INICIAR SESIÓN',
+      style: TextStyle(
+          color: Colors.white, fontSize: 32.00, fontWeight: FontWeight.w900));
+}
+
+// campo usuaro
+Widget usuario() {
+  return Padding(
+    padding: EdgeInsets.only(left: 50.0, right: 50.0),
+    child: TextField(
+      style: TextStyle(fontSize: 24.00, fontWeight: FontWeight.bold),
+      decoration: InputDecoration(
+          hintText: 'user',
+          fillColor: Colors.white,
+          filled: true,
+          contentPadding: EdgeInsets.only(left: 10.0, top: 10.0, bottom: 10.0),
+          hintStyle: TextStyle(fontSize: 24.00, fontWeight: FontWeight.bold)),
+    ),
+  );
+}
+
+// campo de la contraseña
+Widget passWord() {
+  return Padding(
+    padding: EdgeInsets.only(left: 50.0, right: 50.0),
+    child: TextField(
+      obscureText: true,
+      style: TextStyle(fontSize: 24.00, fontWeight: FontWeight.bold),
+      decoration: InputDecoration(
+          hintText: 'Password',
+          fillColor: Colors.white,
+          filled: true,
+          contentPadding: EdgeInsets.only(left: 10.0, top: 10.0, bottom: 10.0),
+          hintStyle: TextStyle(fontSize: 24.00, fontWeight: FontWeight.bold)),
+    ),
+  );
+}
+
+// booton
+Widget button() {
+  return ElevatedButton(
+    onPressed: () {},
+    style: ElevatedButton.styleFrom(
+      backgroundColor: Colors.blue, // Fondo azul
+      padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12.0),
+      ),
+    ),
+    child: Text(
+      'Login',
+      style: TextStyle(
+        fontSize: 18.0,
+        fontWeight: FontWeight.bold,
+        color: Colors.white,
+      ),
+    ),
+  );
 }
